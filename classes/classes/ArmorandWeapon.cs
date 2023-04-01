@@ -8,21 +8,22 @@ namespace classes
 {
     public class ArmorandWeapon
     {
-        private int def_armor;
-        private int atk_weapon;
-        private int dur_armor;
-        private int dur_weapon;
-        private bool equiparmor;
-        private bool equipweapon;
-        private int v1;
-        private int v2;
-        private PieceClass armor;
-        private bool v3;
-        private bool v4;
+        public int def_armor;
+        public int atk_weapon;
+        public int dur_armor;
+        public int dur_weapon;
+        public bool equiparmor;
+        public bool equipweapon;
+        public int v1;
+        public int v2;
+        public PieceClass armor;
+        public bool v3;
+        public bool v4;
 
         public string Name { get; set; } = "";
         public int Power { get; set; } = 0;
         public int Durability { get; set; } = 0;
+
         public PieceClass Class { get; set; } = PieceClass.Any;
 
         public ArmorandWeapon(int power, int durability, PieceClass pieceClass)
