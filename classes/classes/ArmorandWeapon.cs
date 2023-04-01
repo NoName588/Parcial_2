@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace classes
 {
-    internal class ArmorandWeapon
+    public class ArmorandWeapon
     {
+        private int def_armor;
+        private int atk_weapon;
+        private int dur_armor;
+        private int dur_weapon;
+        private bool equiparmor;
+        private bool equipweapon;
+
         public string Name { get; set; } = "";
         public int Power { get; set; } = 0;
         public int Durability { get; set; } = 0;
@@ -18,6 +25,25 @@ namespace classes
             this.Power = power;
             this.Durability = durability;
             this.Class = pieceClass;
+        }
+
+        public ArmorandWeapon(int powerWeapon, int durabilityWeapon, PieceClass pieceClassWeapon,
+                              int powerArmor, int durabilityArmor, PieceClass pieceClassArmor,
+                              bool equipweapon, bool equiparmor)
+        {
+            this.Power = equipweapon ? powerWeapon : powerArmor;
+            this.Durability = equipweapon ? durabilityWeapon : durabilityArmor;
+            this.Class = equipweapon ? pieceClassWeapon : pieceClassArmor;
+        }
+
+        public ArmorandWeapon(int def_armor, int atk_weapon, int dur_armor, int dur_weapon, bool equiparmor, bool equipweapon)
+        {
+            this.def_armor = def_armor;
+            this.atk_weapon = atk_weapon;
+            this.dur_armor = dur_armor;
+            this.dur_weapon = dur_weapon;
+            this.equiparmor = equiparmor;
+            this.equipweapon = equipweapon;
         }
 
         public void Attack()
@@ -45,6 +71,5 @@ namespace classes
         Any
     }
 
-   
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace classes
 {
-    internal class character : ArmorandWeapon
+    public class character : ArmorandWeapon
     {
         public string name { get; set; } = "pepe";
         public int life { get; set; } = 15;
@@ -22,6 +22,7 @@ namespace classes
             this.life = life;
             this.BaseAtk = BaseAtk;
             this.BaseDef = BaseDef;
+          
         }
     }
 
