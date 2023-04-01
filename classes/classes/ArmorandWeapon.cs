@@ -23,7 +23,7 @@ namespace classes
         public ArmorandWeapon(int power, int durability, PieceClass pieceClass)
         {
             this.Power = power;
-            this.Durability = durability;
+            this.Durability = durability < 1 ? 1 : durability;
             this.Class = pieceClass;
         }
 
@@ -32,7 +32,7 @@ namespace classes
                               bool equipweapon, bool equiparmor)
         {
             this.Power = equipweapon ? powerWeapon : powerArmor;
-            this.Durability = equipweapon ? durabilityWeapon : durabilityArmor;
+            this.Durability = equipweapon ? (durabilityWeapon < 1 ? 1 : durabilityWeapon) : (durabilityArmor < 1 ? 1 : durabilityArmor);
             this.Class = equipweapon ? pieceClassWeapon : pieceClassArmor;
         }
 
@@ -40,8 +40,8 @@ namespace classes
         {
             this.def_armor = def_armor;
             this.atk_weapon = atk_weapon;
-            this.dur_armor = dur_armor;
-            this.dur_weapon = dur_weapon;
+            this.dur_armor = dur_armor < 1 ? 1 : dur_armor;
+            this.dur_weapon = dur_weapon < 1 ? 1 : dur_weapon;
             this.equiparmor = equiparmor;
             this.equipweapon = equipweapon;
         }
