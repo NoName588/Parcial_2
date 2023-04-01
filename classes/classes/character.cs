@@ -8,21 +8,30 @@ namespace classes
 {
     internal class character : ArmorandWeapon
     {
-        string name = "pepe";
-        int life = 15;
-        int atk = 5;
-        int def = 2;
-        public character(string name, int life, int atk, int def,
-                     int def_armor, int atk_arma, int dur_armor,
-                     int dur_arma, bool equiparmor, bool equipweapon)
-                     : base(def_armor, atk_arma, dur_armor, dur_arma, equiparmor, equipweapon)
+        public string name { get; set; } = "pepe";
+        public int life { get; set; } = 15;
+        public int BaseAtk { get; set; } = 5;
+        public int BaseDef { get; set; } = 2;
+        public CharacterClass Class { get; set; } = CharacterClass.Human;
+
+        public character(string name, int life, int Baseatk, int Basedef, int atk_weapon, int def_armor,
+                  int dur_weapon, int dur_armor, bool equipweapon, bool equiparmor)
+                  : base(def_armor, atk_weapon, dur_armor, dur_weapon, equiparmor, equipweapon)
         {
             this.name = name;
             this.life = life;
-            this.atk = atk;
-            this.def = def;
+            this.BaseAtk = BaseAtk;
+            this.BaseDef = BaseDef;
         }
-    } 
-       
+    }
+
+    public enum CharacterClass
+    {
+        Human,
+        Beast,
+        Hybrid
+    }
+
+
 }
 
