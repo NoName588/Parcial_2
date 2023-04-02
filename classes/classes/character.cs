@@ -37,10 +37,7 @@ namespace classes
             }
         }
 
-
-        public character(string name, int life, int baseAtk, int baseDef, int atk_weapon, int def_armor,
-                  int dur_weapon, int dur_armor, bool equipweapon, bool equiparmor, int durabilityWeapon, int durabilityArmor)
-                  : base(def_armor, atk_weapon, dur_armor, dur_weapon, equiparmor, equipweapon)
+        public character(string name, int life, int baseAtk, int baseDef, int atk_weapon, int def_armor, int dur_weapon, int dur_armor, bool equipweapon, bool equiparmor, int durabilityWeapon, int durabilityArmor) : base(def_armor, atk_weapon, dur_armor, dur_weapon, equiparmor, equipweapon)
         {
             this.name = name;
             if (life >= 1)
@@ -80,8 +77,8 @@ namespace classes
         }
         public void Defend()
         {
-            dur_armor++;
             DurabilityArmor--;
+            dur_armor++;
             CheckEquipmentDurability();
         }
         public void CheckEquipmentDurability()

@@ -34,9 +34,7 @@ namespace classes
             this.Class = pieceClass;
         }
 
-        public ArmorandWeapon(int powerWeapon, int durabilityWeapon, PieceClass pieceClassWeapon,
-                               int powerArmor, int durabilityArmor, PieceClass pieceClassArmor,
-                               CharacterClass characterClass, bool equipweapon, bool equiparmor)
+        public ArmorandWeapon(int powerWeapon, int durabilityWeapon, PieceClass pieceClassWeapon, int powerArmor, int durabilityArmor, PieceClass pieceClassArmor, CharacterClass characterClass, bool equipweapon, bool equiparmor)
         {
             if ((equipweapon && pieceClassWeapon == PieceClass.Any) || (equiparmor && pieceClassArmor == PieceClass.Any))
             {
@@ -48,11 +46,13 @@ namespace classes
             {
                 this.Power = powerWeapon;
                 this.Durability = durabilityWeapon;
+
                 this.Class = pieceClassWeapon;
             }
             else if (equiparmor && pieceClassArmor == PieceClass.Armor && characterClass == CharacterClass.Human)
             {
                 this.Power = powerArmor;
+
                 this.Durability = durabilityArmor;
                 this.Class = pieceClassArmor;
             }
@@ -70,7 +70,7 @@ namespace classes
                 this.v = v;
                 this.v2 = v2;
             }
-
+            
             public Armor(int defense, int durability, bool equip) : base(defense, 0, PieceClass.Any) { }
         }
 

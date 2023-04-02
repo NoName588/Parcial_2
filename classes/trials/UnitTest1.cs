@@ -59,6 +59,7 @@ namespace trials
 
 
                 Assert.That(weapon.Durability, Is.EqualTo(1));
+
                 Assert.That(armor.Durability, Is.EqualTo(1));
             }
             [Test]
@@ -80,8 +81,10 @@ namespace trials
 
                 int initialDurabilityWeapon = 5;
                 int initialDurabilityArmor = 7;
+
                 character player1 = new character("Player 1", 20, 5, 2, 10, 5, initialDurabilityWeapon, initialDurabilityArmor, true, true, initialDurabilityWeapon, initialDurabilityArmor);
                 character player2 = new character("Player 2", 20, 5, 2, 10, 5, initialDurabilityWeapon, initialDurabilityArmor, true, true, initialDurabilityWeapon, initialDurabilityArmor);
+                
                 int expectedDurabilityWeapon = initialDurabilityWeapon - 1;
                 int expectedDurabilityArmor = initialDurabilityArmor - 1;
 
@@ -91,6 +94,7 @@ namespace trials
 
 
                 Assert.AreEqual(expectedDurabilityWeapon, player1.DurabilityWeapon);
+
                 Assert.AreEqual(expectedDurabilityArmor, player2.DurabilityArmor);
             }
             [Test]
@@ -176,17 +180,16 @@ namespace trials
             }
 
             [Test]
-            public void testF2()
+            public void DurabilityWeaponTest()
             {
                 var character = new character("Sam", 100, 10, 5, 10, 20, 1, 20, true, false, 0, 0);
                 var Enemy = new character("Gandalf", 20, 7, 3, 9, 5, 10, 10, false, false, 0, 0);
+
                 character.Attack(Enemy);
+
                 Assert.IsFalse(character.wEquiped);
 
             }
-
-
-
 
             [Test]
             public void CannotEquipBrokenEquipment()
