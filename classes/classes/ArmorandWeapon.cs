@@ -17,6 +17,7 @@ namespace classes
         public int v1;
         public int v2;
         public PieceClass armor;
+        public PieceClass weapon;
         public bool v3;
         public bool v4;
 

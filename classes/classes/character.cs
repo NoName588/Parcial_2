@@ -14,12 +14,13 @@ namespace classes
         public int BaseDef { get; set; } = 2;
         public int DurabilityWeapon { get; set; } 
         public int DurabilityArmor { get; set; } 
+        
 
 
 
         public CharacterClass Class { get; set; } = CharacterClass.Human;
 
-        public character(string name, int life, int Baseatk, int Basedef, int atk_weapon, int def_armor,
+        public character(string name, int life, int baseAtk, int baseDef, int atk_weapon, int def_armor,
                   int dur_weapon, int dur_armor, bool equipweapon, bool equiparmor, int durabilityWeapon, int durabilityArmor)
                   : base(def_armor, atk_weapon, dur_armor, dur_weapon, equiparmor, equipweapon)
         {
@@ -32,8 +33,8 @@ namespace classes
             {
                 this.life = 1;
             }
-            this.BaseAtk = BaseAtk;
-            this.BaseDef = BaseDef;
+            this.BaseAtk = baseAtk;
+            this.BaseDef = baseDef;
             DurabilityWeapon = durabilityWeapon;
             DurabilityArmor = durabilityArmor;
 
@@ -42,24 +43,39 @@ namespace classes
         {
             if (DurabilityWeapon > 0)
             {
-                int damage = BaseAtk - enemy.dur_armor;
+                int damage = BaseAtk;
+                if (enemy.equiparmor)
+                {
+                    damage -= enemy.dur_armor;
+                }
                 if (damage > 0)
                 {
                     enemy.life -= damage;
                 }
-                DurabilityWeapon--; 
+                dur_weapon++;
+                DurabilityWeapon--;
             }
+            CheckEquipmentDurability();
         }
         public void Defend()
         {
             dur_armor++;
-            DurabilityArmor--; 
+            DurabilityArmor--;
+            CheckEquipmentDurability();
         }
-        public void Attack()
+        public void CheckEquipmentDurability()
         {
-            dur_weapon++;
-            DurabilityWeapon--; 
+            if (DurabilityWeapon <= 0)
+            {
+                equipweapon = false;
+            }
+            if (DurabilityArmor <= 0)
+            {
+                equiparmor = false;
+            }
         }
+
+
 
 
     }
