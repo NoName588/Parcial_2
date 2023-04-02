@@ -1,4 +1,7 @@
 using classes;
+using System.Numerics;
+using System;
+using static classes.ArmorandWeapon;
 
 namespace trials
 {
@@ -103,8 +106,8 @@ namespace trials
 
                 Assert.AreEqual(10, defender.life);
             }
-            //[Test]
-            /*public void TestAttackWithEquippedWeaponAndOpponentHasArmor()
+            [Test]
+            public void TestAttackWithEquippedWeaponAndOpponentHasArmor()
             {
                
                 var characterWithWeapon = new character("Jhon", 20, 10, 5, 20, 5, 10, 10, true, true, 10, 10);
@@ -115,7 +118,7 @@ namespace trials
 
 
                 Assert.AreEqual(15, enemy.life);
-            }*/
+            }
             [Test]
             public void AttackTest()
             {
@@ -130,10 +133,76 @@ namespace trials
                 Assert.AreEqual(26, character2.life);
                 Assert.AreEqual(9, character1.DurabilityWeapon);
             }
+            [Test]
+            public void WeaponBreaksWhenDurabilityReachesZero()
+            {
+                
+                var character1 = new character("Obi One", 20, 7, 3, 9, 5, 10, 1, true, true, 1, 10);
+                var character2 = new character("Anakin", 30, 5, 2, 7, 4, 10, 10, true, true, 10, 10);
+
+                
+                character1.Attack(character2);
+                character1.Attack(character2);
+
+                
+                Assert.AreEqual(21, character2.life);
+                Assert.IsFalse(character1.equipweapon);
+            }
+            [Test]
+            public void ArmorDurabilityZero_UnequipsArmor()
+            {
+                
+                var character = new character("Eggman", 20, 7, 3, 9, 5, 10, 5, true, true, 10, 0);
+                var enemy = new character("Sanic", 30, 5, 2, 7, 4, 10, 0, true, true, 10, 10);
+
+                
+                character.Attack(enemy);
+
+                
+                Assert.IsFalse(character.equiparmor);
+            }
+            [Test]
+            public void ArmorDurabilityNotNegative_AfterTakingDamage()
+            {
+                
+                var character = new character("Gandalf", 20, 7, 3, 9, 5, 10, 5, true, true, 10, 5);
+                var enemy = new character("Sauron", 30, 5, 2, 7, 4, 10, 10, true, true, 10, 10);
+
+                
+                character.Attack(enemy);
+
+               
+                Assert.GreaterOrEqual(character.dur_armor, 0);
+            }
+
+            [Test]
+            public void testF2()
+            {
+                var character = new character("Sam", 100, 10, 5, 10, 20, 1, 20, true, false, 0, 0);
+                var Enemy = new character("Gandalf", 20, 7, 3, 9, 5, 10, 10, false, false, 0, 0);
+                character.Attack(Enemy);
+                Assert.IsFalse(character.wEquiped);
+
+            }
+
+
+
+
+            [Test]
+            public void CannotEquipBrokenEquipment()
+            {
+                var character = new character("Gandalf", 20, 7, 3, 9, 5, 10, 10, false, false, 0, 0);
+                Weapon weapon = new Weapon(10, 5, true);
+                var armor = new Armor("Armadura rota", 0);
+
+                Assert.Throws<ArgumentException>(() => character.EquipWeapon(weapon));
+                Assert.Throws<ArgumentException>(() => character.EquipArmor(armor));
+            }
+            
+
 
         }
 
-        
     }
     
 }

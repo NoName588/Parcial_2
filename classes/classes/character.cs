@@ -8,17 +8,35 @@ namespace classes
 {
     public class character : ArmorandWeapon
     {
+        public bool? wEquiped;
+
         public string name { get; set; } = "pepe";
         public int life { get; set; } = 15;
         public int BaseAtk { get; set; } = 5;
         public int BaseDef { get; set; } = 2;
         public int DurabilityWeapon { get; set; } 
-        public int DurabilityArmor { get; set; } 
-        
+        public int DurabilityArmor { get; set; }
+        public bool equipweapon { get; set; } = true;
+        public string Weapon { get; set; }
+        public string Armor { get; set; }
+        private CharacterClass _class;
+        private bool isClassSet;
+        public CharacterClass Class
+        {
+            get
+            {
+                return _class;
+            }
+            set
+            {
+                if (!isClassSet)
+                {
+                    _class = value;
+                    isClassSet = true;
+                }
+            }
+        }
 
-
-
-        public CharacterClass Class { get; set; } = CharacterClass.Human;
 
         public character(string name, int life, int baseAtk, int baseDef, int atk_weapon, int def_armor,
                   int dur_weapon, int dur_armor, bool equipweapon, bool equiparmor, int durabilityWeapon, int durabilityArmor)
@@ -52,8 +70,11 @@ namespace classes
                 {
                     enemy.life -= damage;
                 }
-                dur_weapon++;
                 DurabilityWeapon--;
+                if (DurabilityWeapon <= 0)
+                {
+                    equipweapon = false;
+                }
             }
             CheckEquipmentDurability();
         }
@@ -75,9 +96,15 @@ namespace classes
             }
         }
 
+        public void EquipWeapon(Weapon weapon)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
+        public void EquipArmor(Armor armor)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public enum CharacterClass

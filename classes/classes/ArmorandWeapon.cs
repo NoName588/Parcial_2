@@ -57,6 +57,27 @@ namespace classes
                 this.Class = pieceClassArmor;
             }
         }
+        public ArmorandWeapon() : this(0, 0, PieceClass.Any)
+        {
+        }
+
+        public class Armor : ArmorandWeapon
+        {
+            private string v;
+
+            public Armor(string v, int v2)
+            {
+                this.v = v;
+                this.v2 = v2;
+            }
+
+            public Armor(int defense, int durability, bool equip) : base(defense, 0, PieceClass.Any) { }
+        }
+
+        public class Weapon : ArmorandWeapon
+        {
+            public Weapon(int attack, int durability, bool equip) : base(0, attack, PieceClass.Any) { }
+        }
 
         public ArmorandWeapon(int def_armor, int atk_weapon, int dur_armor, int dur_weapon, bool equiparmor, bool equipweapon)
         {
